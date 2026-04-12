@@ -22,6 +22,7 @@ services:
     build:
       context: .
     container_name: skeletron_nginx_php
+    user: root
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
