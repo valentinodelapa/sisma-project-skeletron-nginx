@@ -3,3 +3,5 @@ www/composer.lock
 www/Cache/
 www/Logs/
 www/filesystemMedia/
+/nbproject/private/
+.env

@@ -27,6 +27,8 @@ services:
       - "host.docker.internal:host-gateway"
     volumes:
       - ./www:/var/www/html/
+    env_file:
+      - .env
     networks:
       - default
 
@@ -35,10 +37,10 @@ services:
     image: mariadb:latest
     container_name: skeletron_nginx_db
     environment:
-      MARIADB_ROOT_PASSWORD: root_password
-      MARIADB_DATABASE: skeletron_nginx
-      MARIADB_USER: db_user
-      MARIADB_PASSWORD: db_password
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DATABASE_NAME}
+      MARIADB_USER: ${DATABASE_USERNAME}
+      MARIADB_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
       - ./skeletron_nginx.sql:/docker-entrypoint-initdb.d/skeletron_nginx.sql
@@ -51,7 +53,7 @@ services:
     container_name: skeletron_nginx_pma
     environment:
       PMA_HOST: skeletron_nginx_db
-      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     networks:
       - web_network
       - default
