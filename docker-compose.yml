@@ -47,22 +47,6 @@ services:
     networks:
       - default
 
-  # --- PHPMYADMIN ---
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: skeletron_nginx_pma
-    environment:
-      PMA_HOST: skeletron_nginx_db
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-    networks:
-      - web_network
-      - default
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.skeletron_nginx_pma.rule=Host(`db.skeletron-nginx.localhost`)"
-      - "traefik.http.services.skeletron_nginx_pma.loadbalancer.server.port=80"
-      - "traefik.docker.network=web_network"
-
 networks:
   web_network:
     external: true

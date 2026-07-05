@@ -1,0 +1,9 @@
+services:
+  nginx:
+    restart: unless-stopped
+
+  php:
+    restart: unless-stopped
+
+  db:
+    restart: unless-stopped

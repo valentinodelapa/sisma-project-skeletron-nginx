@@ -5,3 +5,4 @@ www/Logs/
 www/filesystemMedia/
 /nbproject/private/
 .env
+/backups/
