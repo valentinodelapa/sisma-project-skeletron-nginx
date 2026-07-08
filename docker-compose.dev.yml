@@ -1,4 +1,14 @@
 services:
+  # --- NGINX WEB SERVER: esposizione via Traefik (solo sviluppo) ---
+  nginx:
+    networks:
+      - web_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.skeletron_nginx_app.rule=Host(`skeletron-nginx.localhost`)"
+      - "traefik.http.services.skeletron_nginx_app.loadbalancer.server.port=80"
+      - "traefik.docker.network=web_network"
+
   # --- PHPMYADMIN ---
   phpmyadmin:
     image: phpmyadmin/phpmyadmin

@@ -9,13 +9,7 @@ services:
     depends_on:
       - php
     networks:
-      - web_network
       - default
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.skeletron_nginx_app.rule=Host(`skeletron-nginx.localhost`)"
-      - "traefik.http.services.skeletron_nginx_app.loadbalancer.server.port=80"
-      - "traefik.docker.network=web_network"
 
   # --- PHP-FPM ---
   php:
